@@ -10,9 +10,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const { items, isLoading, error } = useSelector(state => state.contacts);
 
+// Перевірити цю деструктуризацію
+
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
+  
+  // Відредагувати error
 
   return (
     <Layout>
@@ -27,5 +31,3 @@ export const App = () => {
   );
 };
 
-
-// Відредагувати error

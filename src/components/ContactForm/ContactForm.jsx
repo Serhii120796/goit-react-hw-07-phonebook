@@ -11,7 +11,7 @@ import {
 import { Button } from '../ContactItem/ContactItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
-import { selectorItems } from 'redux/selectors';
+import { selectContacts } from 'redux/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).required('Enter a name'),
@@ -22,7 +22,7 @@ const schema = yup.object().shape({
 });
 
 export const ContactForm = () => {
-  const contactList = useSelector(selectorItems);
+  const contactList = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleSubmit = (newContact, { resetForm }) => {
