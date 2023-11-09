@@ -10,29 +10,30 @@ import {
 } from './ContactForm.styled';
 import { Button } from '../ContactItem/ContactItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
+import { selectorItems } from 'redux/selectors';
 
 const schema = yup.object().shape({
   name: yup.string().min(2).required('Enter a name'),
-  number: yup
+  phone: yup
     .string()
     .matches(/^\d{9,}$/, 'Enter a phone number with at least 9 digits')
     .required('Enter a phone number'),
 });
 
 export const ContactForm = () => {
-  const contactList = useSelector(state => state.contacts);
+  const contactList = useSelector(selectorItems);
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = (newContact, { resetForm }) => {
     const checkContact = contactList.some(
-      contact => contact.name.toLowerCase() === values.name.toLowerCase()
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
     if (checkContact) {
-      alert(`${values.name} is already in contacts`);
+      alert(`${newContact.name} is already in contacts`);
       return;
     }
-    dispatch(addContact(values));
+    dispatch(addContact(newContact));
     resetForm();
   };
 
@@ -40,7 +41,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        number: '',
+        phone: '',
       }}
       validationSchema={schema}
       onSubmit={handleSubmit}
@@ -59,10 +60,10 @@ export const ContactForm = () => {
             <FieldWraper>
               <StyleField
                 type="tel"
-                name="number"
+                name="phone"
                 placeholder="Enter a phone number"
               />
-              <StyleErrorMessage name="number" component="div" />
+              <StyleErrorMessage name="phone" component="div" />
             </FieldWraper>
           </Label>
           <Button type="submit">Add contact</Button>
