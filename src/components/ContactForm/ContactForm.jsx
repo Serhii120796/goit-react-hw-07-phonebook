@@ -17,7 +17,7 @@ const schema = yup.object().shape({
   name: yup.string().min(2).required('Enter a name'),
   phone: yup
     .string()
-    .matches(/^\d{9,}$/, 'Enter a phone number with at least 9 digits')
+    .matches(/(?:([+]\d{1,4})[-.\s]?)?(?:[(](\d{1,3})[)][-.\s]?)?(\d{1,4})[-.\s]?(\d{1,4})[-.\s]?(\d{1,9})/g, 'Enter a phone number with at least 9 digits')
     .required('Enter a phone number'),
 });
 
