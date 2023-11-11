@@ -2,6 +2,7 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactsList/ContactsList';
 import { Error } from './Error/Error';
+import { Loader } from './Loader/Loader';
 import { Layout } from './Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -30,7 +31,7 @@ export const App = () => {
       <h2>Contacts</h2>
       <Filter />
       {contacts.length > 0 && <ContactList />}
-      {isLoading && <p>Loading contacts...</p>}
+      {isLoading && <Loader />}
       {error && <Error message={error} />}
       <Toaster />
     </Layout>
