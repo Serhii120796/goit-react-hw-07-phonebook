@@ -12,7 +12,6 @@ export const Span = styled.span`
 
 export const Button = styled.button`
   height: 20px;
-  margin-left: auto;
   font-size: 12px;
   background-color: inherit;
   border: ${p => p.theme.borders.gray};

@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: ${p => p.theme.spasing(5)};
   padding: 0;
   overflow-y: scroll;
 
@@ -15,4 +12,12 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: ${p => p.theme.spasing(2)};
+
+  & + & {
+    border-top: 1px solid ${p => p.theme.colors.lightGray};
+
+  }
 `;
